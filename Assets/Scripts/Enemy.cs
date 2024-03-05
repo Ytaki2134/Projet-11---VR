@@ -4,13 +4,41 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public EnemyStats eStats;
+    private GameObject targetToFocus;
 
-    [SerializeField]
+    public int maxHealth;
+    public int damage;
+    public int speed;
+
     private int currentHealth;
 
     void Start()
     {
-        currentHealth = eStats.maxHealth;
+        targetToFocus = GameObject.Find("Base"); // A revoir 
+        currentHealth = maxHealth;
+    }
+
+    private void Update()
+    {
+        var step = speed * Time.deltaTime;
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetToFocus.transform.position, step);
+
+        if (currentHealth <= 0) 
+        {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "DeathTest")
+        {
+            currentHealth -= 200;
+        }
     }
 }
