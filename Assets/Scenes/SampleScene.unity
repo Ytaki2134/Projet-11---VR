@@ -563,13 +563,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3516ce94affd3cc4193b086133d9ec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesToSpawn:
+  typeOfEnemies:
   - {fileID: 1103094706558940833, guid: 8f0b0271699f0b54e980138aab9845ec, type: 3}
   - {fileID: 3882146055445544490, guid: 23753d08739ec944c8848db1e7eb8aa3, type: 3}
   spawnPoint: {fileID: 903036281}
   numberOfEnemy: 10
   SpawnFrequency: 0.4
   enemyCounter: 0
+  numberOfWaves: 0
 --- !u!4 &903036283
 Transform:
   m_ObjectHideFlags: 0
