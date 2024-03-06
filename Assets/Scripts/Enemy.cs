@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private EnemySpawner spawner;
+
     private GameObject targetToFocus;
 
     public int maxHealth;
@@ -14,6 +16,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        spawner = GameObject.FindWithTag("Spawner").GetComponent<EnemySpawner>();
         targetToFocus = GameObject.Find("Base"); // A revoir 
         currentHealth = maxHealth;
     }
@@ -32,6 +35,7 @@ public class Enemy : MonoBehaviour
     private void Death()
     {
         Destroy(gameObject);
+        spawner.enemyCounter--;
     }
 
     private void OnTriggerEnter(Collider other)
