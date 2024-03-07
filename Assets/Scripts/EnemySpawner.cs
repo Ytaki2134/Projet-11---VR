@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] typeOfEnemies;
-    public int[][] enemiesToSpawn = new int[0][];
 
     [SerializeField] GameObject spawnPoint;
 
@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
 
     [HideInInspector] public int enemyCounter;
     [HideInInspector] public int numberOfWaves;
+    [HideInInspector] public int[] numberOfEnemiesInWave;
 
     private bool isPlaying = false;
 
@@ -39,29 +40,36 @@ public class EnemySpawner : MonoBehaviour
                 }
                 yield return new WaitForSeconds(5);
             }
-            numberOfEnemy = enemiesToSpawn[0].Length;
         }
     }
 
     public void SpawnEnemy(int enemyIndex)
     {
-        GameObject enemyToSpawn = typeOfEnemies[enemiesToSpawn[0][enemyIndex]];
+        GameObject enemyToSpawn = typeOfEnemies[0];
         enemyToSpawn.transform.position = spawnPoint.transform.position;
         Instantiate(enemyToSpawn);
 
         enemyCounter++;
     }
 
-    public int[][] UpdateArray(int[][] arraytoUpdate)
+    public int[] AddArrayLenght(int[] arraytoUpdate)
     {
-        int[][] tempArray = arraytoUpdate;
-        arraytoUpdate = new int[arraytoUpdate.Length + 1][];
-        for (int i = 0; i < tempArray.Length; i++)
+        int[] tempArray = arraytoUpdate;
+        arraytoUpdate = new int[tempArray.Length + 1];
+        for (int i = 0; i < tempArray.Length; i++ )
         {
-            for (int j = 0; j < tempArray[i].Length; j++)
-            {
-                arraytoUpdate[i][j] = tempArray[i][j];
-            }
+            arraytoUpdate[i] = tempArray[i];
+        }
+        return arraytoUpdate;
+    }
+
+    public int[] RemoveArrayLenght(int[] arraytoUpdate)
+    {
+        int[] tempArray = arraytoUpdate;
+        arraytoUpdate = new int[tempArray.Length - 1];
+        for (int i = 0; i < tempArray.Length - 1; i++)
+        {
+            arraytoUpdate[i] = tempArray[i];
         }
         return arraytoUpdate;
     }
