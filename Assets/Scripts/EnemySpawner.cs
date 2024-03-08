@@ -10,21 +10,24 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] typeOfEnemies;
 
     [SerializeField] GameObject spawnPoint;
-
-    [SerializeField] int numberOfEnemy;
     [SerializeField] float SpawnFrequency;
 
     [HideInInspector] public int enemyCounter;
     [HideInInspector] public int numberOfWaves;
     [HideInInspector] public int[] numberOfEnemiesInWave;
+    [HideInInspector] public List<int[]> enemies;
 
     private bool isPlaying = false;
+    private int currentWave;
 
     private void Start()
     {
+        currentWave = 0;
         isPlaying = true;
         enemyCounter = 0;
-        StartCoroutine(SpawnWave());
+        //enemies.Add(new int[typeOfEnemies.Length]);
+        Debug.Log(enemies.Count);
+        /*StartCoroutine(SpawnWave());*/
     }
 
     IEnumerator SpawnWave()
@@ -33,19 +36,28 @@ public class EnemySpawner : MonoBehaviour
         {
             if (enemyCounter == 0)
             {
-                for (int i = 0; i < numberOfEnemy; i++)
+                currentWave++;
+                for (int i = 0; i < typeOfEnemies.Length; i++)
                 {
-                    SpawnEnemy(i);
-                    yield return new WaitForSeconds(SpawnFrequency);
+                    for (int j = 0; j < enemies[currentWave][i]; j++)
+                    {
+                        SpawnEnemy(i);
+                        yield return new WaitForSeconds(SpawnFrequency);
+                    }
                 }
+                
                 yield return new WaitForSeconds(5);
+            }
+            if (currentWave == numberOfWaves)
+            {
+                isPlaying = false;
             }
         }
     }
 
     public void SpawnEnemy(int enemyIndex)
     {
-        GameObject enemyToSpawn = typeOfEnemies[0];
+        GameObject enemyToSpawn = typeOfEnemies[enemyIndex];
         enemyToSpawn.transform.position = spawnPoint.transform.position;
         Instantiate(enemyToSpawn);
 
