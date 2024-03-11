@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth;
     public int damage;
     public int speed;
+    public int goldDrop;
 
     private int currentHealth;
 

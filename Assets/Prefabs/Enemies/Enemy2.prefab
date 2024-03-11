@@ -151,3 +151,4 @@ MonoBehaviour:
   maxHealth: 200
   damage: 15
   speed: 5
+  goldDrop: 200

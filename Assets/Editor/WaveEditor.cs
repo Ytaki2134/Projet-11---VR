@@ -3,11 +3,12 @@ using UnityEditor;
 using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class WaveEditor : EditorWindow
 {   
-    public Vector2 scrollPosition = Vector2.zero;/*
-    public List<int[]> enemies  = new List<int[]> { };*/
+    public Vector2 scrollPosition = Vector2.zero;
+    public List<int[]> enemies;
 
     //private static WaveEditor instance = null;
     //public static WaveEditor Instance
@@ -29,6 +30,10 @@ public class WaveEditor : EditorWindow
 
     public void OnGUI()
     {
+        if (enemies == null)
+        {
+            enemies = new List<int[]>();
+        }
         EnemySpawner spawner = GameObject.FindWithTag("Spawner").GetComponent<EnemySpawner>();
         //Debug.Log(spawner);
 
@@ -40,8 +45,7 @@ public class WaveEditor : EditorWindow
             //}
             spawner.numberOfWaves++;
             spawner.numberOfEnemiesInWave = spawner.AddArrayLenght(spawner.numberOfEnemiesInWave);
-            spawner.enemies.Add(new int[spawner.typeOfEnemies.Length]);
-            Debug.Log(spawner.enemies.Count);
+            enemies.Add(new int[spawner.typeOfEnemies.Length]);
         }
         
         if (GUI.Button(new Rect(120, 10, 100, 30), "Remove Wave"))
@@ -49,8 +53,9 @@ public class WaveEditor : EditorWindow
             {
                 spawner.numberOfWaves--;
                 spawner.numberOfEnemiesInWave = spawner.RemoveArrayLenght(spawner.numberOfEnemiesInWave);
-                spawner.enemies.Remove(spawner.enemies.Last());
+                enemies.Remove(enemies.Last());
             }
+
 
         scrollPosition = GUI.BeginScrollView(new Rect(10, 40, 300, 400), scrollPosition, new Rect(0, 0, 220, spawner.typeOfEnemies.Length * 35 * spawner.numberOfWaves));
 
@@ -71,8 +76,21 @@ public class WaveEditor : EditorWindow
             GUI.Label(new Rect(120, i * spawner.typeOfEnemies.Length * 35, 200, 20), "Total number of enemies : " + spawner.numberOfEnemiesInWave[i]);
         }
 
-        GUI.EndScrollView();
 
-        /*spawner.enemies = enemies;*/
+        spawner.enemies = enemies;
+        GUI.EndScrollView();
     }
+
+    /*public static void CreateMyAsset(List<int[]> enemies)
+    {
+        EnemiesSO asset = ScriptableObject.CreateInstance<EnemiesSO>();
+        asset.enemies = enemies;
+
+        AssetDatabase.CreateAsset(asset, "Assets/Enemies.asset");
+        AssetDatabase.SaveAssets();
+
+        EditorUtility.FocusProjectWindow();
+
+        Selection.activeObject = asset;
+    }*/
 }

@@ -11,11 +11,12 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] GameObject spawnPoint;
     [SerializeField] float SpawnFrequency;
+    [SerializeField] EnemiesSO enemySO;
 
     [HideInInspector] public int enemyCounter;
     [HideInInspector] public int numberOfWaves;
     [HideInInspector] public int[] numberOfEnemiesInWave;
-    [HideInInspector] public List<int[]> enemies;
+    [HideInInspector] public List<int[]> enemies = new List<int[]>();
 
     private bool isPlaying = false;
     private int currentWave;
@@ -26,13 +27,14 @@ public class EnemySpawner : MonoBehaviour
         isPlaying = true;
         enemyCounter = 0;
         //enemies.Add(new int[typeOfEnemies.Length]);
-        Debug.Log(enemies.Count);
-        /*StartCoroutine(SpawnWave());*/
+        StartCoroutine(SpawnWave());
     }
 
     IEnumerator SpawnWave()
     {
-        while (isPlaying)
+
+        yield return new WaitForSeconds(5);
+        /*while (isPlaying)
         {
             if (enemyCounter == 0)
             {
@@ -52,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 isPlaying = false;
             }
-        }
+        }*/
     }
 
     public void SpawnEnemy(int enemyIndex)
