@@ -29,9 +29,9 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        while (isPlaying)
+       /* while (isPlaying)
         {
-            if (enemyCounter == 0)
+            */if (enemyCounter == 0)
             {
                 for (int i = 0; i < numberOfEnemy; i++)
                 {
@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 yield return new WaitForSeconds(5);
             }
-        }
+        /*}*/
     }
 
     public void SpawnEnemy(int enemyIndex)

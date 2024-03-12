@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         spawner = GameObject.FindWithTag("Spawner").GetComponent<EnemySpawner>();
-        targetToFocus = GameObject.Find("Base"); // A revoir 
+        targetToFocus = GameObject.FindWithTag("Base"); // A revoir 
         currentHealth = maxHealth;
     }
 

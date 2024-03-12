@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DeathTest
   - Spawner
+  - Base
   layers:
   - Default
   - TransparentFX
