@@ -150,4 +150,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   damage: 15
-  speed: 5
+  speed: 2
+  goldOnDrop: 200

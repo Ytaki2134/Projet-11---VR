@@ -11,13 +11,14 @@ public class Enemy : MonoBehaviour
     public int maxHealth;
     public int damage;
     public int speed;
+    public int goldOnDrop;
 
     private int currentHealth;
 
     void Start()
     {
         spawner = GameObject.FindWithTag("Spawner").GetComponent<EnemySpawner>();
-        targetToFocus = GameObject.FindWithTag("Base"); // A revoir 
+        targetToFocus = GameObject.FindWithTag("Base"); 
         currentHealth = maxHealth;
     }
 
