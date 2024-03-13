@@ -7,22 +7,22 @@ public class Enemy : MonoBehaviour
 {
     private EnemySpawner spawner;
 
-    private GameObject targetToFocus;
+    [HideInInspector] public GameObject targetToFocus;
 
     public int maxHealth;
     public int damage;
     public int speed;
     public int goldOnDrop;
 
-    private int currentHealth;
+    [HideInInspector] public int currentHealth;
     private bool isFrozen;
     private Color currentColor;
 
     void Start()
     {
-        currentColor = gameObject.GetComponent<Renderer>().material.color;
+        currentColor = gameObject.GetComponentInChildren<Renderer>().material.color;
         spawner = GameObject.FindWithTag("Spawner").GetComponent<EnemySpawner>();
-        targetToFocus = GameObject.FindWithTag("Base"); 
+        targetToFocus = GameObject.FindWithTag("Base");
         currentHealth = maxHealth;
     }
 
