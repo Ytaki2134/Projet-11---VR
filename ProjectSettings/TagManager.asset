@@ -7,6 +7,7 @@ TagManager:
   - DeathTest
   - Spawner
   - Coin
+  - Base
   layers:
   - Default
   - TransparentFX
@@ -15,13 +16,13 @@ TagManager:
   - Water
   - UI
   - Rail
-  - Stopper
+  - Enemy
   - 
   - 
   - 
-  - Ice
-  - Fire
-  - Thunder
+  - 
+  - 
+  - 
   - 
   - 
   - 

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: waves
   m_EditorClassIdentifier: 
   enemies:
-  - _enemies: 04000000
-  - _enemies: 02000000
+  - _enemies: 05000000
+  - _enemies: 0a000000
+  - _enemies: 0f000000

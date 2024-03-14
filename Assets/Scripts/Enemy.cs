@@ -40,13 +40,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private IEnumerator Death()
-    {
-        spawner.enemyCounter--;
-        yield return new WaitForSeconds(5);
-        Destroy(gameObject);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Projectile")
@@ -60,6 +53,11 @@ public class Enemy : MonoBehaviour
             if (collidedObject.GetComponent<Projectile>().freeze == true)
                 StartCoroutine(Freezing());
         }
+    }
+
+    public void StartBurning(int damage)
+    {
+        StartCoroutine(Burning(damage));
     }
 
     private IEnumerator Burning(int damage)
@@ -79,6 +77,11 @@ public class Enemy : MonoBehaviour
         ChangeMaterialColor(currentColor);
     }
 
+    public void StartFreezing()
+    {
+        StartCoroutine(Freezing());
+    }
+
     private IEnumerator Freezing()
     {
         ChangeMaterialColor(Color.blue);
@@ -88,8 +91,42 @@ public class Enemy : MonoBehaviour
         ChangeMaterialColor(currentColor);
     }
 
+    public void StartShocking()
+    {
+        StartCoroutine(Shocking());
+    }
+
+    private IEnumerator Shocking()
+    {
+        foreach (GameObject enemy in spawner.enemiesInWave)
+        {
+            if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) < 2000000)
+            {
+                ChangeMaterialColor(new Color(1, .08f, .55f), enemy);
+                if (enemy.GetComponent<Enemy>().currentHealth >= 0)
+                {
+                    enemy.GetComponent<Enemy>().currentHealth -= damage / 10;
+                }
+                yield return new WaitForSeconds(0.1f);
+                ChangeMaterialColor(currentColor, enemy);
+            }
+        }
+    }
+
     private void ChangeMaterialColor(Color newColor)
     {
         gameObject.GetComponentInChildren<Renderer>().material.color = newColor;
+    }
+
+    private void ChangeMaterialColor(Color newColor, GameObject enemyToChange)
+    {
+        enemyToChange.gameObject.GetComponentInChildren<Renderer>().sharedMaterial.color = newColor;
+    }
+
+    private IEnumerator Death()
+    {
+        spawner.enemyCounter--;
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }
