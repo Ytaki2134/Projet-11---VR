@@ -30,7 +30,6 @@ public class EnemySpawner : MonoBehaviour
         enemies = waves.enemies.Select(i => i.Enemies).ToList();
         isPlaying = true;
         enemyCounter = 0;
-        StartWave();
     }
 
     public void StartWave()
