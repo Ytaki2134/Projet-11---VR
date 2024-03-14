@@ -5,22 +5,29 @@ using UnityEditor;
 using Unity.VisualScripting;
 using Unity.VisualScripting.YamlDotNet.Core;
 using System.Linq;
+using UnityEditor.VersionControl;
+using System.IO;
 
 public class WaveEditor : EditorWindow
 {   
     public Vector2 scrollPosition = Vector2.zero;
 
-    List<int[]> enemies = new List<int[]> { };
+    WavesSO waves = null;
+
+    List<int[]> enemies = new List<int[]>();
 
     [MenuItem("Waves/Waves Editor")]
     public static void ShowWindow() 
     { 
         WaveEditor window = GetWindow<WaveEditor>();
         window.titleContent = new GUIContent("Waves Editor");
+        window.waves = AssetDatabase.LoadAssetAtPath<WavesSO>("Assets/waves.asset");
+        window.enemies = window.waves.enemies.Select(i => i.Enemies).ToList();
     }
 
     public void OnGUI()
     {
+
         EnemySpawner spawner = GameObject.FindWithTag("Spawner").GetComponent<EnemySpawner>();
 
         if (GUI.Button(new Rect(10, 10, 100, 30), "Add Wave"))
@@ -30,7 +37,7 @@ public class WaveEditor : EditorWindow
             enemies.Add(new int[spawner.typeOfEnemies.Length]);
         }
         
-        if (GUI.Button(new Rect(120, 10, 100, 30), "Remove Wave"))
+        if (GUI.Button(new Rect(110, 10, 100, 30), "Remove Wave"))
             if (spawner.numberOfWaves > 0)
             {
                 spawner.numberOfWaves--;
@@ -42,8 +49,8 @@ public class WaveEditor : EditorWindow
 
         for (int i = 0; i < spawner.numberOfWaves; i++)
         {
-            GUI.Label(new Rect(20, i * spawner.typeOfEnemies.Length * 35, 100, 20), "Wave " + (i + 1));
-            GUI.Label(new Rect(120, i * spawner.typeOfEnemies.Length * 35, 200, 20), "Total number of enemies : " + spawner.numberOfEnemiesInWave[i]);
+            GUI.Label(new Rect(20, i * spawner.typeOfEnemies.Length * 50, 100, 20), "Wave " + (i + 1));
+            GUI.Label(new Rect(120, i * spawner.typeOfEnemies.Length * 50, 200, 20), "Total number of enemies : " + spawner.numberOfEnemiesInWave[i]);
             GUILayout.Space(20);
 
             spawner.numberOfEnemiesInWave[i] = 0;
@@ -56,5 +63,12 @@ public class WaveEditor : EditorWindow
         }
 
         GUI.EndScrollView();
+
+        if (GUI.Button(new Rect(210, 10, 100, 30), "Create SO") && waves == null)
+        {
+            waves = ScriptableObject.CreateInstance<WavesSO>();
+            waves.enemies = enemies.Select(i => new WavesSO.EnemyContainer() { Enemies = i }).ToList();
+            AssetDatabase.CreateAsset(waves, "Assets/waves.asset");
+        }
     }
 }
