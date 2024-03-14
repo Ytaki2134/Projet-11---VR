@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 834804720223454643}
   - component: {fileID: 3468532832681113012}
   - component: {fileID: 5917658622215764036}
+  - component: {fileID: -398720465748470017}
   m_Layer: 0
   m_Name: IceRock
   m_TagString: Untagged
@@ -135,7 +136,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -357,4 +358,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strenght: 1000
+  Activate: 0
   destroyObject: -20
+--- !u!114 &-398720465748470017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328030585685389843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3628d1af2059dbe4eb98cc90cff54252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  burn: 0
+  freeze: 1
+  shock: 0

@@ -11,7 +11,6 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] GameObject spawnPoint;
 
-    [SerializeField] int numberOfEnemy;
     [SerializeField] float SpawnFrequency;
 
     [HideInInspector] public int enemyCounter;
@@ -19,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     [HideInInspector] public int[] numberOfEnemiesInWave;
 
     [HideInInspector] public List<int[]> enemies = new List<int[]>();
+    [HideInInspector] public List<GameObject> enemiesInWave = new List<GameObject>();
     [SerializeField] WavesSO waves;
 
     private int currentWave;
@@ -30,12 +30,17 @@ public class EnemySpawner : MonoBehaviour
         enemies = waves.enemies.Select(i => i.Enemies).ToList();
         isPlaying = true;
         enemyCounter = 0;
+        StartWave();
+    }
+
+    public void StartWave()
+    {
         StartCoroutine(SpawnWave());
     }
 
     IEnumerator SpawnWave()
     {
-        while (isPlaying)
+        if (currentWave < numberOfWaves)
         {
             currentWave++;
             for (int i = 0; i < typeOfEnemies.Length; i++)
@@ -47,18 +52,15 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(5);
-            if (currentWave == numberOfWaves)
-            {
-                isPlaying = false;
-            }
         }
     }
 
     public void SpawnEnemy(int enemyIndex)
     {
         GameObject enemyToSpawn = typeOfEnemies[enemyIndex];
-        enemyToSpawn.transform.position = spawnPoint.transform.position + new Vector3(Random.Range(-50, 50), 0, 0);
+        enemyToSpawn.transform.position = spawnPoint.transform.position + new Vector3(Random.Range(-150, 150), 0, 0);
         Instantiate(enemyToSpawn);
+        enemiesInWave.Add(enemyToSpawn);
 
         enemyCounter++;
     }
