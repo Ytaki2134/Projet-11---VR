@@ -13,7 +13,9 @@ public class Chest : MonoBehaviour
 
     private void Start()
     {
-        _isOpen = true;
+        _isOpen = false;
+
+        //To Move
         Instantiate(Reward, new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z + 0.4f), Quaternion.identity);
 
         StartCoroutine(OpenLid());
@@ -21,6 +23,10 @@ public class Chest : MonoBehaviour
 
     private IEnumerator OpenLid()
     {
+        if (_isOpen)
+            yield break;
+
+        _isOpen = true;
         while (_totalRotation < _targetRotation.x)
         {
             float currentAngle = Pivot.rotation.eulerAngles.x;
