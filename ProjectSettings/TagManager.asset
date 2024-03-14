@@ -6,14 +6,15 @@ TagManager:
   tags:
   - DeathTest
   - Spawner
+  - Coin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Terrain
   - Water
   - UI
-  - 
+  - Rail
   - 
   - 
   - 
