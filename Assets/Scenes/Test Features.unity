@@ -2228,6 +2228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5917658622215764036, guid: a75ae187b895de142b63b088525d8b01,
         type: 3}
+      propertyPath: Activate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917658622215764036, guid: a75ae187b895de142b63b088525d8b01,
+        type: 3}
       propertyPath: destroyObject
       value: -50
       objectReference: {fileID: 0}
