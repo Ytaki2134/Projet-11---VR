@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public int goldOnDrop;
 
     [HideInInspector] public int currentHealth;
-    private bool isFrozen;
+    [HideInInspector] public bool isMoving = true;
     private Color currentColor;
 
     void Start()
@@ -29,21 +29,22 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         var step = speed * Time.deltaTime;
-        if (isFrozen == false) 
+        if (isMoving == true) 
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetToFocus.transform.position, step);
         }
 
         if (currentHealth <= 0) 
         {
-            Death();
+            StartCoroutine(Death());
         }
     }
 
-    private void Death()
+    private IEnumerator Death()
     {
-        Destroy(gameObject);
         spawner.enemyCounter--;
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,14 +82,14 @@ public class Enemy : MonoBehaviour
     private IEnumerator Freezing()
     {
         ChangeMaterialColor(Color.blue);
-        isFrozen = true;
+        isMoving = false;
         yield return new WaitForSeconds(3);
-        isFrozen = false;
+        isMoving = true;
         ChangeMaterialColor(currentColor);
     }
 
     private void ChangeMaterialColor(Color newColor)
     {
-        gameObject.GetComponent<Renderer>().material.color = newColor;
+        gameObject.GetComponentInChildren<Renderer>().material.color = newColor;
     }
 }

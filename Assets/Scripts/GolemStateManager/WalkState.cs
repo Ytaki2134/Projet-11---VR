@@ -16,14 +16,16 @@ public class WalkState : State
     {
         animator.SetBool("isWalking", true);
 
-        if (enemy.transform.position.x < 125)
+        if (Vector3.Distance(enemy.transform.position, enemy.targetToFocus.transform.position) < 20)
         {
+            enemy.isMoving = false;
             animator.SetBool("isAttacking", true);
             return attackState;
         }
 
         if (enemy.currentHealth <= 0)
         {
+            enemy.isMoving = false;
             animator.SetBool("isDead", true);
             return deathState;
         }
