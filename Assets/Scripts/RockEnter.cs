@@ -32,7 +32,7 @@ public class RockEnter : MonoBehaviour
             switch(Watch.GetComponent<TransformRockXithMagic>().GetChoice() )
             {
                 case 0:
-                    other.gameObject = Watch.GetComponent<TransformRockXithMagic>().GetNormalRock();
+                    //other.gameObject = Watch.GetComponent<TransformRockXithMagic>().GetNormalRock();
                     break;
 
                 case 1:
