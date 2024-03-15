@@ -52,6 +52,10 @@ public class EnemySpawner : MonoBehaviour
             }
             yield return new WaitForSeconds(5);
         }
+        else
+        {
+            // Victory
+        }
     }
 
     public void SpawnEnemy(int enemyIndex)
