@@ -7,33 +7,24 @@ public class RockSpawner : MonoBehaviour
 
 
     [SerializeField] private float RespawnSpeed;
-    [SerializeField] private int MaxCount;
 
-
-    private int _RockCount;
+    [SerializeField] RockManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        _RockCount = 0;
-
         StartCoroutine(SpawnRock());
     }
 
 
     IEnumerator SpawnRock()
     {
-        while (_RockCount < MaxCount)
+        while (manager.rockCount < manager.maxNumberOfRocks)
         {
             Instantiate(Rock, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            _RockCount++;
+            manager.AddRock();
             yield return new WaitForSeconds(RespawnSpeed);
         }
-    }
-
-    public void RockCountDecrease()
-    {
-        _RockCount --;
     }
 
     public void SetRock(GameObject newRock)
