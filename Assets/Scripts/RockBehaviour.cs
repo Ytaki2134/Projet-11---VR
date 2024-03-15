@@ -4,7 +4,7 @@ using UnityEngine.XR.Content.Interaction;
 public class RockBehaviour : MonoBehaviour
 {
     private Rigidbody _rb;
-    [SerializeField] private float _strength = 2f;
+    public float _strength = 2f;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class RockBehaviour : MonoBehaviour
             //Rail Layer
             case 6:
                 _rb.velocity = collision.transform.up * _strength;
-                Debug.Log(transform.position + " " + collision.transform.up);
+                //Debug.Log(transform.position + " " + collision.transform.up);
                 break;
 
             //Terrain Layer
@@ -50,7 +50,7 @@ public class RockBehaviour : MonoBehaviour
             //Rail Layer
             case 6:
                 _rb.velocity = collision.transform.up * _strength;
-                Debug.Log(transform.position + " " + collision.transform.up);
+                /*Debug.Log(transform.position + " " + collision.transform.up);*/
                 break;
 
             //Terrain Layer

@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 3468532832681113012}
   - component: {fileID: 5917658622215764036}
   - component: {fileID: -8994601614780634531}
+  - component: {fileID: 7402536777395547439}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -136,7 +137,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -357,9 +358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebb3d6f5bea47f45b080aed976e2e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strenght: 1000
-  Activate: 0
-  destroyObject: -20
+  strenght: 10000
+  Activate: 1
+  destroyObject: 5
 --- !u!114 &-8994601614780634531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,3 +377,16 @@ MonoBehaviour:
   burn: 0
   freeze: 0
   shock: 0
+--- !u!114 &7402536777395547439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328030585685389843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb43ec4d1b55678478bc957b090b13fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strength: 5

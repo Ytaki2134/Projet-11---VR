@@ -29,7 +29,9 @@ public class Projectile : MonoBehaviour
                 {
                     enemy.StartShocking();
                 }
+                Destroy(gameObject);
                 break;
         }
+
     }
 }

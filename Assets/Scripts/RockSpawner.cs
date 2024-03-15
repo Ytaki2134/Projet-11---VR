@@ -4,8 +4,12 @@ using UnityEngine;
 public class RockSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject Rock;
+
+
     [SerializeField] private float RespawnSpeed;
     [SerializeField] private int MaxCount;
+
+
     private int _RockCount;
 
     // Start is called before the first frame update
@@ -25,5 +29,15 @@ public class RockSpawner : MonoBehaviour
             _RockCount++;
             yield return new WaitForSeconds(RespawnSpeed);
         }
+    }
+
+    public void RockCountDecrease()
+    {
+        _RockCount --;
+    }
+
+    public void SetRock(GameObject newRock)
+    {
+        Rock = newRock;
     }
 }
