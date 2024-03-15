@@ -94,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 1067925524328404}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 666.8835, y: 0.29, z: -77.73}
+  m_LocalPosition: {x: 424.88348, y: 0, z: -77.73}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -103,6 +103,7 @@ Transform:
   - {fileID: 3911460381720181035}
   - {fileID: 9013497816085920913}
   - {fileID: 6712806642482237076}
+  - {fileID: 599626583419911429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95380085654935804
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetToFocus: {fileID: 0}
   maxHealth: 100
-  damage: 10
+  damage: 50
   speed: 5
   goldOnDrop: 50
   currentHealth: -1
@@ -932,6 +933,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkState: {fileID: 4238485202367482354}
   deathState: {fileID: 6103093783103473835}
+  victoryState: {fileID: 4034927253097214844}
+--- !u!1 &4215136054392377199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599626583419911429}
+  - component: {fileID: 4034927253097214844}
+  m_Layer: 0
+  m_Name: VictoryState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &599626583419911429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215136054392377199}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -28.920177, y: 2.6256003, z: -3.3895557}
+  m_LocalScale: {x: 0.16666667, y: 0.16666667, z: 0.16666667}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4408297863206454}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4034927253097214844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215136054392377199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752f1438daa15754ab872289247bf428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7439969159252313747
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,8 +1024,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackState: {fileID: 4534023334858578693}
   deathState: {fileID: 6103093783103473835}
+  victoryState: {fileID: 4034927253097214844}
   animator: {fileID: 95380085654935804}
   enemy: {fileID: -4646768086152135112}
+  baseScript: {fileID: 0}
 --- !u!1 &7663461095557098718
 GameObject:
   m_ObjectHideFlags: 0
