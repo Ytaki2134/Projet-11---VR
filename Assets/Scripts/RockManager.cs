@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RockManager : MonoBehaviour
 {
+    public GameObject Rock;
+
     public int maxNumberOfRocks;
     [HideInInspector] public int rockCount;
 

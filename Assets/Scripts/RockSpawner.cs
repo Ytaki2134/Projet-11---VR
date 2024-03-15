@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class RockSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject Rock;
-
-
     [SerializeField] private float RespawnSpeed;
 
     [SerializeField] RockManager manager;
@@ -21,7 +18,7 @@ public class RockSpawner : MonoBehaviour
     {
         while (manager.rockCount < manager.maxNumberOfRocks)
         {
-            Instantiate(Rock, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Instantiate(manager.Rock, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             manager.AddRock();
             yield return new WaitForSeconds(RespawnSpeed);
         }
@@ -29,6 +26,6 @@ public class RockSpawner : MonoBehaviour
 
     public void SetRock(GameObject newRock)
     {
-        Rock = newRock;
+        manager.Rock = newRock;
     }
 }
