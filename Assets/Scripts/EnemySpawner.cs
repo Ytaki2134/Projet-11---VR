@@ -21,6 +21,10 @@ public class EnemySpawner : MonoBehaviour
     [HideInInspector] public List<GameObject> enemiesInWave = new List<GameObject>();
     [SerializeField] WavesSO waves;
 
+
+
+    [SerializeField] GameObject Win;
+
     private int currentWave;
     private bool isPlaying = false;
 
@@ -31,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
         isPlaying = true;
         enemyCounter = 0;
     }
+
+
 
     public void StartWave()
     {
@@ -54,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            // Victory
+            Win.SetActive(true);
         }
     }
 

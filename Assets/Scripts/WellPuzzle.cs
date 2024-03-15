@@ -10,6 +10,7 @@ public class WellPuzzle : MonoBehaviour
         {
         Debug.Log(other.gameObject.tag);
             Instantiate(Reward, new Vector3(transform.position.x + 0.6f, transform.position.y + 1.2f, transform.position.z), Quaternion.Euler(new Vector3(-90f, -270f, 0f)));
+            Destroy(other.gameObject);
         }
     }
 }

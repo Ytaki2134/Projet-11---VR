@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
+    [SerializeField] private GameObject Lose;
+    
     public int hp;
     public int totalDamage = 0;
+
+
 
     private void Update()
     {
@@ -30,6 +34,6 @@ public class Base : MonoBehaviour
 
     private void Defeat()
     {
-        // Show Defeat
+        Lose.SetActive(true);
     }
 }

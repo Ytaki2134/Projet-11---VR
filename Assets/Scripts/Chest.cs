@@ -16,9 +16,7 @@ public class Chest : MonoBehaviour
         _isOpen = false;
 
         //To Move
-        Instantiate(Reward, new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z + 0.4f), Quaternion.identity);
-
-        StartCoroutine(OpenLid());
+        
     }
 
     private IEnumerator OpenLid()
@@ -36,5 +34,12 @@ public class Chest : MonoBehaviour
         }
         Pivot.rotation = Quaternion.Euler(_targetRotation);
         yield break;
+    }
+
+    public void Open()
+    {
+        Instantiate(Reward, new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z + 0.4f), Quaternion.identity);
+
+        StartCoroutine(OpenLid());
     }
 }
