@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int damage = 50;
+    public int damage = 40;
     public bool burn;
     public bool freeze;
     public bool shock;
@@ -32,6 +32,10 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
                 break;
         }
+    }
 
+    private void OnDestroy()
+    {
+        GameObject.Find("RockManager").GetComponent<RockManager>().RemoveRock();
     }
 }
