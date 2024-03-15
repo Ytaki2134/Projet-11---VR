@@ -13,6 +13,14 @@ public class RockSpawner : MonoBehaviour
         StartCoroutine(SpawnRock());
     }
 
+    private void Update()
+    {
+        if (manager.rockCount < manager.maxNumberOfRocks)
+        {
+            StartCoroutine(SpawnRock());
+        }
+    }
+
 
     IEnumerator SpawnRock()
     {
